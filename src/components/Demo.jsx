@@ -1,3 +1,40 @@
+/**
+ * Demo component that provides a form to input a URL, fetches a summary of the article at that URL,
+ * translates the summary if necessary, and displays the summary. It also maintains a history of
+ * previously summarized articles and allows users to copy URLs or navigate to them.
+ *
+ * @component
+ * @returns {JSX.Element} The rendered component.
+ *
+ * @example
+ * <Demo />
+ *
+ * @remarks
+ * This component uses several custom hooks for fetching data and managing state:
+ * - `useDetectLanguageMutation` for detecting the language of the summary.
+ * - `useTranslateTextMutation` for translating the summary.
+ * - `useLazyGetSummaryQuery` for fetching the summary of the article.
+ *
+ * @state {Object} article - The current article being summarized.
+ * @state {string} article.url - The URL of the article.
+ * @state {string} article.summary - The summary of the article.
+ * @state {string} article.translatedSummary - The translated summary of the article.
+ * @state {Array} allArticles - The list of all summarized articles.
+ * @state {string} copied - The URL that has been copied to the clipboard.
+ * @state {string|null} error - The error message, if any.
+ * @state {boolean} isFetching - Indicates if the summary is being fetched.
+ *
+ * @function handleSubmit - Handles the form submission to fetch the article summary.
+ * @function handleTranslateSummary - Translates the fetched summary if necessary.
+ * @function handleCopy - Copies the given URL to the clipboard.
+ * @function handleNavTo - Opens the given URL in a new tab.
+ *
+ * @dependencies
+ * - `useEffect` to load articles from local storage on component mount.
+ * - `localStorage` to persist the list of summarized articles.
+ * - `navigator.clipboard` to copy URLs to the clipboard.
+ */
+
 import { useEffect, useState } from "react";
 
 import { copy, linkIcon, loader, tick, navToLink } from "../assets";
