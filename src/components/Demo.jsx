@@ -37,6 +37,8 @@ const Demo = () => {
     setError(null);
     setIsFetching(true);
 
+    setArticle((prev) => ({ ...prev, summary: "", translatedSummary: "" })); // Reset article state
+
     try {
       const { data, error } = await getSummary({ articleUrl: article.url });
 
@@ -197,7 +199,7 @@ const Demo = () => {
                 <p
                   className="font-inter font-medium text-sm text-gray-700"
                   dangerouslySetInnerHTML={{
-                    __html: article.translatedSummary || article.summary,
+                    __html: article.translatedSummary,
                   }}
                 />
               </div>
