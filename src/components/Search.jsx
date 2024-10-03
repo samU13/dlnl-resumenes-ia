@@ -1,4 +1,4 @@
-import { linkIcon } from "../assets";
+import { linkIcon, deleteUrl } from "../assets";
 import PropTypes from "prop-types";
 
 const Search = ({ article, setArticle, handleSubmit }) => {
@@ -23,6 +23,20 @@ const Search = ({ article, setArticle, handleSubmit }) => {
           required
           className="url_input peer"
         />
+        {article.url && (
+          <div
+            className="delete-url_btn"
+            onClick={() => {
+              setArticle({ ...article, url: "" });
+            }}
+          >
+            <img
+              src={deleteUrl}
+              alt="delete_icon"
+              className="w-[40%] h-[40%] object-contain"
+            />
+          </div>
+        )}
         <button
           type="submit"
           className="submit_btn peer-focus:border-gray-700 peer-focus:text-gray-700"
